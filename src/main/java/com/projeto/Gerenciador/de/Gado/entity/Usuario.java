@@ -17,7 +17,7 @@ import lombok.EqualsAndHashCode;
 
 @SuppressWarnings("serial")
 @Entity
-@Table
+@Table(name = "usuario")
 @EqualsAndHashCode(of = "id")
 public class Usuario implements UserDetails{
 	
@@ -27,6 +27,11 @@ public class Usuario implements UserDetails{
 	private String login;
 	private String senha;
 	
+	public Usuario() {} 
+	public Usuario(String login, String senha) {
+		this.login = login;
+		this.senha = senha;
+	}
 	public Integer getId_usuario() {
 		return id_usuario;
 	}
@@ -56,6 +61,25 @@ public class Usuario implements UserDetails{
 	@Override
 	public String getUsername() {
 		return login;
+	}
+	@Override
+	public boolean isAccountNonExpired() {
+	    return true; 
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+	    return true; 
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+	    return true; 
+	}
+
+	@Override
+	public boolean isEnabled() {
+	    return true; 
 	}
 }
 
